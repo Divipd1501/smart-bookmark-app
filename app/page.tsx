@@ -45,9 +45,13 @@ export default function Home() {
   }
 
   async function login() {
-    await supabase.auth.signInWithOAuth({ provider: 'google' })
-  }
-
+  await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: window.location.origin
+    }
+  })
+}
   async function logout() {
     await supabase.auth.signOut()
     setUser(null)
